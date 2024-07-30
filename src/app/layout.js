@@ -22,7 +22,7 @@ export default function RootLayout({ children, params: { session, ...params}, })
         <AuthProvider>
           <ProgresBarProvider>
               <Header />
-                <div className=' pt-64 md:pt-24'>
+                <div className=' pt-24'>
                   {children}
                 </div>
               <Footer />

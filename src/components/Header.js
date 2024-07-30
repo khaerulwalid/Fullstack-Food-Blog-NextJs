@@ -19,13 +19,13 @@ const Buttons = React.memo(({session}) => {
     console.log(session, "<<Session di Button");
     const router = useRouter();
     return (
-        <div className='flex flex-col md:flex-row items-center md:align-middle gap-2 mt-6 md:mt-0'>
+        <div className={`flex ${session ? 'flex-col md:flex-row mt-6' : 'flex-row'} items-center align-middle gap-2 md:mt-0`}>
           {
             session &&
             (
                 <button
                     type="button"
-                    className="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:hover:ring-[FF9119]/40 me-2 order-2 md:order-1"
+                    className="text-white bg-amber-700 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-600/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-amber-ring-amber-600/80 dark:hover:ring-[FF9119]/40 me-2 order-2 md:order-1"
                 >
                     <PostDataSvg />
                     Post Data
@@ -76,12 +76,9 @@ const Buttons = React.memo(({session}) => {
 
 
 
-function Header() {
-
+const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-
     const { data: session, status } = useSession()
-    console.log(session, "<<Session");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -100,7 +97,7 @@ function Header() {
     }, []);
 
   return (
-    <div className={`flex flex-col md:flex-row justify-between p-5 bg-white/70 fixed w-full z-10 transition-colors duration-300 border-b-4 ${isScrolled ? 'bg-white/70 border-brown-700/70' : 'bg-white border-brown-700'}`}>
+    <div className={`flex ${session ? 'flex-col md:flex-row' : 'flex-row'} justify-between p-5 bg-white/70 fixed w-full z-10 transition-colors duration-300 border-b-4 ${isScrolled ? 'bg-white/70 border-brown-700/70' : 'bg-white border-brown-700'}`}>
       <Logo />
       {status === 'loading' ? null : <Buttons session={session} />}
     </div>
